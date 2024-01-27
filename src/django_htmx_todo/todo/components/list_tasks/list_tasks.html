@@ -1,0 +1,5 @@
+<h1>Tasks</h1>
+
+{% for task in tasks %}
+{% component "task_preview" task=task %}<br />
+{% endfor %}
