@@ -1,0 +1,14 @@
+<html>
+
+<head>
+  <title>Todo App</title>
+  {% load static %}
+</head>
+
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  {% block main %}
+  {% endblock %}
+  <script src="{% static 'htmx.min.js' %}"></script>
+</body>
+
+</html>
