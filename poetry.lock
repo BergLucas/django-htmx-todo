@@ -168,6 +168,20 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-components"
+version = "0.34"
+description = "A way to create simple reusable template components in Django."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django_components-0.34-py3-none-any.whl", hash = "sha256:8be6b8e9b1e0441296439728b5ddb908ca5c007c157737d9885d786c15918ee5"},
+    {file = "django_components-0.34.tar.gz", hash = "sha256:ebc5a8162206bceca80f9bf2b92dda85dc0ba180fd18b746527aa1e194522b54"},
+]
+
+[package.dependencies]
+Django = ">=3.2"
+
+[[package]]
 name = "django-environ"
 version = "0.10.0"
 description = "A package that allows you to utilize 12factor inspired environment variables to configure your Django application."
@@ -506,4 +520,4 @@ waitress = ["waitress"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "7bbd66c930cf4625e3585209131f39d8c8169fc6d5918d4b369ccc386ef45ee6"
+content-hash = "07f41bd3ce8a1f74fbe77f95160710cd2e9f876167860c17737e5d3f43daaee2"
