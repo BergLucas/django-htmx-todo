@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+    web:
+        restart: always
+        environment:
+            - SECRET_KEY
+            - DEBUG
+            - ALLOWED_HOSTS
+            - ADMIN_PAGE
+            - DATABASE_URL=postgresql://${POSTGRES_USER?Missing username}:${POSTGRES_PASSWORD?Missing password}@db:5432/${POSTGRES_DB?Missing database}
+            - STATIC_URL
+            - DEFAULT_FROM_EMAIL
+            - EMAIL_HOST
+            - EMAIL_HOST_USER
+            - EMAIL_HOST_PASSWORD
+            - EMAIL_PORT
+            - EMAIL_USE_TLS
+            - EMAIL_USE_SSL
+
+    db:
+        restart: always
+        environment:
+            - POSTGRES_USER
+            - POSTGRES_PASSWORD
+            - POSTGRES_DB

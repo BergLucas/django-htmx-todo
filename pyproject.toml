@@ -1,0 +1,134 @@
+[tool.poetry]
+name = "django_htmx_todo"
+version = "0.1.0"
+description = "django_htmx_todo package"
+license = "Proprietary"
+authors = ["Lucas Berg <55436804+BergLucas@users.noreply.github.com>"]
+readme = "README.md"
+keywords = [
+    "Django",
+    "Poetry",
+    "django_htmx_todo"
+]
+classifiers = [
+    "Framework :: Django :: 4.2",
+    "Programming Language :: Python :: 3.11"
+]
+include = [
+    "django_htmx_todo/static/**/*",
+    "django_htmx_todo/templates/**/*",
+    "NOTICE"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.2.4"
+django-environ = "^0.10.0"
+psycopg = "^3.1.10"
+psycopg-c = { version = "^3.1.10", optional = true }
+gunicorn = { version = "^21.2", optional = true }
+waitress = { version = "^2.1", optional = true }
+
+[tool.poetry.group.dev.dependencies]
+psycopg-binary = "^3.1.10"
+black = "^23.7.0"
+mypy = "^1.5.0"
+coverage = "^7.2.7"
+ruff = "^0.0.284"
+
+[tool.poetry.extras]
+c = ["psycopg-c"]
+gunicorn = ["gunicorn"]
+waitress = ["waitress"]
+
+[tool.poetry.scripts]
+django_htmx_todo = "django_htmx_todo:main"
+
+
+[build-system]
+requires = ["poetry-core~=1.5"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poe.tasks]
+dev = "python manage.py runserver"
+test = "python -m unittest -v"
+coverage = "coverage run -m unittest -v"
+coverage-report = [
+    "coverage",
+    { cmd = "coverage report" }
+]
+coverage-html = [
+    "coverage",
+    { cmd = "coverage html" }
+]
+mypy = "mypy src"
+black = "black src"
+ruff = "ruff check --fix src"
+lint = ["black", "ruff", "mypy"]
+migrate = "python manage.py migrate"
+makemigrations = "python manage.py makemigrations"
+dev-docker = "docker compose up"
+clean.shell = "rm -rf dist"
+build-docker.shell = "docker compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.build.yml build && mkdir -p dist/docker && docker compose -f docker-compose.yml -f docker-compose.prod.yml convert > dist/docker/docker-compose.yml && docker save berglucas/django_htmx_todo:0.1.0 -o dist/docker/django_htmx_todo_v0.1.0.tar"
+
+[tool.poe.tasks.build-docs]
+cmd = "sphinx-build -M $target docs docs/_build/$PROJECT"
+args = [
+    { name = "PROJECT", options = ["-p", "--project"], default = "op" },
+    { name = "target", positional = true, default = "help" }
+]
+
+[tool.poe.tasks.livehtml-docs]
+cmd = "sphinx-autobuild --port $port docs docs/_build/$PROJECT/html"
+args = [
+    { name = "PROJECT", options = ["-p", "--project"], default = "op" },
+    { name = "port", options = ["--port"], default = "8080" }
+]
+
+
+[tool.poetry_bumpversion.file."pyproject.toml"]
+search = 'docker save berglucas/django_htmx_todo:{current_version} -o dist/docker/django_htmx_todo_v{current_version}.tar'
+replace = 'docker save berglucas/django_htmx_todo:{new_version} -o dist/docker/django_htmx_todo_v{new_version}.tar'
+
+[tool.poetry_bumpversion.file."docker-compose.yml"]
+search = 'berglucas/django_htmx_todo:{current_version}'
+replace = 'berglucas/django_htmx_todo:{new_version}'
+
+[tool.poetry_bumpversion.file."src/django_htmx_todo/settings.py"]
+search = '"VERSION": "{current_version}"'
+replace = '"VERSION": "{new_version}"'
+
+
+[tool.coverage.run]
+branch = true
+source = [
+    "django_htmx_todo",
+    "tests"
+]
+
+
+[tool.ruff]
+select = [
+    "D",   # pydocstyle
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "N",   # pep8-naming
+    "I",   # isort
+    "C",   # flake8-comprehensions
+    "B",   # flake8-bugbear
+    "S",   # flake8-bandit
+    "DJ",  # flake8-django
+    "TCH", # flake8-type-checking
+    "Q",   # flake8-quotes
+    "PL",  # pylint
+]
+
+ignore = [
+    "D100",
+    "D104",
+]
+
+[tool.ruff.pydocstyle]
+convention = "google"

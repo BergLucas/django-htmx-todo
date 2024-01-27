@@ -1,0 +1,29 @@
+version: '3.9'
+name: django_htmx_todo-dev
+services:
+    web:
+        image: berglucas/django_htmx_todo:dev
+        build:
+            context: .
+            target: development
+        command: >
+            sh -c "poetry install --sync &&
+                   poetry run python manage.py migrate &&
+                   poetry run python manage.py runserver 0.0.0.0:8000"
+        volumes:
+            - .:/app
+        ports:
+            - 8000:8000
+        environment:
+            - SECRET_KEY=key
+            - DEBUG=1
+            - ADMIN_PAGE=1
+            - DATABASE_URL=postgresql://user:password@db:5432/app
+
+    db:
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_USER=user
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=app
