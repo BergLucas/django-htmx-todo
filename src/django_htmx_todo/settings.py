@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django_htmx",
 ]
 
 if ADMIN_PAGE:
@@ -85,19 +86,15 @@ if ADMIN_PAGE:
         "django.contrib.admin",
     ]
 
-MIDDLEWARE = ["django.middleware.security.SecurityMiddleware"]
-
-MIDDLEWARE += ["django.contrib.sessions.middleware.SessionMiddleware"]
-
-MIDDLEWARE += [
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-]
-
-MIDDLEWARE += [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = "django_htmx_todo.urls"

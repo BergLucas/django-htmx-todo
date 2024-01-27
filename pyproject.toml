@@ -28,6 +28,7 @@ psycopg = "^3.1.10"
 psycopg-c = { version = "^3.1.10", optional = true }
 gunicorn = { version = "^21.2", optional = true }
 waitress = { version = "^2.1", optional = true }
+django-htmx = "^1.17.2"
 
 [tool.poetry.group.dev.dependencies]
 psycopg-binary = "^3.1.10"
