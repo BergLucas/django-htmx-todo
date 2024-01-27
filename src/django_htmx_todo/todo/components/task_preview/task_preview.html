@@ -1,1 +1,7 @@
-{{ task.title }} {{ task.completed }}
+<div id="task-preview-{{ task.id }}" class="list-group-item list-group-item-action">
+    {{ task.title }}
+    <button type="button" class="btn btn-primary btn-sm" hx-post="{% url 'set_task_completed' id=task.id %}"
+        hx-target="#task-preview-{{ task.id }}" hx-swap="outerHTML">
+        {% if task.completed %} Completed {% else %} Not completed {% endif %}
+    </button>
+</div>

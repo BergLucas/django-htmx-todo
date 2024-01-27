@@ -195,6 +195,13 @@ MEDIA_ROOT = env.path("MEDIA_ROOT", default=relative_resource("media"))
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+# Django components
+
+COMPONENTS = {
+    "autodiscover": False,
+}
+
+
 # Email
 
 SERVER_EMAIL = env.str("SERVER_EMAIL", default="root@localhost")
