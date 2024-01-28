@@ -69,6 +69,8 @@ CSRF_TRUSTED_ORIGINS = env.list(
     default=["http://localhost:8000", "http://127.0.0.1:8000"],
 )
 
+LOGIN_URL = env.str("LOGIN_URL", default="/login/")
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -80,6 +82,7 @@ INSTALLED_APPS = [
     "django_htmx",
     "django_components",
     "django_components.safer_staticfiles",
+    "django_htmx_todo.login",
     "django_htmx_todo.todo",
 ]
 
@@ -97,6 +100,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    "django_htmx_todo.login.middleware.htmx_middleware",
 ]
 
 ROOT_URLCONF = "django_htmx_todo.urls"

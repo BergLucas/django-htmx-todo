@@ -1,12 +1,12 @@
-from django.http.request import HttpRequest
-from django.http.response import HttpResponse
+from django.http import HttpRequest, HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django_components import component
 from django_htmx_todo.todo.models import Task
 
 
 @component.register("task_preview")
-class TaskPreview(component.Component):
+class TaskPreview(LoginRequiredMixin, component.Component):
     template_name = "task_preview/task_preview.html"
 
     def get_context_data(self, task: Task) -> dict:
