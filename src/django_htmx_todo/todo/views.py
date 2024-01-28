@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest
-from django.views.generic import View, TemplateView, UpdateView
+from django.views.generic import View, TemplateView, CreateView, UpdateView
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django_htmx.http import HttpResponseLocation
@@ -43,3 +43,14 @@ class UpdateTaskView(LoginRequiredMixin, UpdateView):
     form_class = TaskForm
     model = Task
     success_url = reverse_lazy("list_tasks")
+
+
+class CreateTaskView(LoginRequiredMixin, CreateView):
+    template_name = "create_task.html"
+    form_class = TaskForm
+    model = Task
+    success_url = reverse_lazy("list_tasks")
+
+    def form_valid(self, form: TaskForm):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

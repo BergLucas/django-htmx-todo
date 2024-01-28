@@ -3,6 +3,10 @@
 {% block main %}
 <h1>Tasks</h1>
 
+<div hx-boost="true">
+    <a class="btn btn-primary btn-sm" href="{% url 'create_task' %}">Create</a>
+</div>
+
 <div class="list-group">
     {% for task in tasks %}
         {% include "task_preview.html" with task=task %}
