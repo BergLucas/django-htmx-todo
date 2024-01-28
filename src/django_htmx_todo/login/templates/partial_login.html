@@ -1,11 +1,5 @@
 <form id="login" hx-post="{% url 'login' %}?next={{ next }}" hx-swap="outerHTML" hx-target="#login">
     {% csrf_token %}
-    {% for field in form %}
-    <div class="form-control">
-        {{ field.errors }}
-        {{ field.label_tag }}
-        {{ field }}
-    </div>
-    {% endfor %}
+    {{ form.as_p }}
     <input class="btn btn-primary btn-sm" type="submit" value="Submit">
 </form>
