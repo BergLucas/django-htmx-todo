@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>Update Task</h1>
+
+<form id="update-task" hx-post="{% url 'update_task' pk=object.id %}" hx-swap="outerHTML" hx-target="#update-task"
+    method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

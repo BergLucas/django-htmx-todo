@@ -17,7 +17,7 @@ def htmx_middleware(get_response):
 
             redirect = urlparse(response["location"])
             response.status_code = 204
-            response.headers["HX-Redirect"] = f"{redirect.path}{querystring}"
+            response.headers["HX-Location"] = f"{redirect.path}{querystring}"
         return response
 
     return middleware

@@ -1,7 +1,8 @@
 from django.urls import path
-from django_htmx_todo.todo.views import TasksView, TaskPreview
+from django_htmx_todo.todo.views import ListTaskView, UpdateTaskView, TaskPreview
 
 urlpatterns = [
-    path("", TasksView.as_view(), name="tasks_view"),
-    path("<int:id>/completed/", TaskPreview.as_view(), name="set_task_completed"),
+    path("", ListTaskView.as_view(), name="tasks_view"),
+    path("<int:pk>/completed/", TaskPreview.as_view(), name="update_task_completed"),
+    path("<int:pk>/update/", UpdateTaskView.as_view(), name="update_task"),
 ]

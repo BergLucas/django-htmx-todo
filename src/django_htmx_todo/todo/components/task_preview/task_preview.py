@@ -12,8 +12,8 @@ class TaskPreview(LoginRequiredMixin, component.Component):
     def get_context_data(self, task: Task) -> dict:
         return {"task": task}
 
-    def post(self, request: HttpRequest, id: int) -> HttpResponse:
-        task = get_object_or_404(Task, id=id)
+    def post(self, request: HttpRequest, pk: int) -> HttpResponse:
+        task = get_object_or_404(Task, pk=pk)
         task.completed = not task.completed
         task.save()
         return self.render_to_response(self.get_context_data(task))

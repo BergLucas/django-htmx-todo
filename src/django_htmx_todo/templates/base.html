@@ -10,7 +10,7 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+<body id="main" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
   {% block main %}
   {% endblock %}
   <script src="{% static 'htmx.min.js' %}"></script>
