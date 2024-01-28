@@ -22,11 +22,10 @@ class LoginView(DjangoLoginView):
 class LogoutView(DjangoLogoutView):
     next_page = reverse_lazy("login")
 
-    def get_redirect_url(self):
+    def get_default_redirect_url(self):
         referer_header = self.request.headers.get("Referer")
-        redirect_url = super().get_redirect_url()
 
-        if not redirect_url and referer_header is not None:
-            return urlparse(referer_header).path
+        if referer_header is not None and (referer_path := urlparse(referer_header).path) != "/":
+            return f"{self.next_page}?next={referer_path}"
         else:
-            return redirect_url
+            return super().get_default_redirect_url()
