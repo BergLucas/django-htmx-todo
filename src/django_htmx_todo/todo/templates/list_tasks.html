@@ -5,7 +5,7 @@
 
 <div class="list-group">
     {% for task in tasks %}
-    {% component "task_preview" task=task %}
+        {% include "task_preview.html" with task=task %}
     {% endfor %}
 </div>
 {% endblock %}

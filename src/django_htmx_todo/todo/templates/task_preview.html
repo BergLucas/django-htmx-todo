@@ -1,10 +1,14 @@
 <div id="task-preview-{{ task.pk }}" class="list-group-item list-group-item-action">
     {{ task.title }}
-    <button type="button" class="btn btn-primary btn-sm" hx-post="{% url 'update_task_completed' pk=task.pk %}"
+    <button type="button" class="btn btn-primary btn-sm" hx-patch="{% url 'update_task_completed' pk=task.pk %}"
         hx-target="#task-preview-{{ task.pk }}" hx-swap="outerHTML">
         {% if task.completed %} Completed {% else %} Not completed {% endif %}
     </button>
     <div hx-boost="true">
         <a class="btn btn-primary btn-sm" href="{% url 'update_task' pk=task.pk %}">Update</a>
     </div>
+    <button type="button" class="btn btn-primary btn-sm" hx-delete="{% url 'delete_task' pk=task.pk %}"
+        hx-target="#task-preview-{{ task.pk }}" hx-swap="delete">
+        Delete
+    </button>
 </div>
