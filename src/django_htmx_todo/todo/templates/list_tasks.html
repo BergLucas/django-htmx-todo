@@ -1,12 +1,11 @@
-{% extends "base.html" %}
+{% extends "base_task.html" %}
 
 {% block main %}
-<h1>Tasks</h1>
-
-<button class="btn btn-primary btn-sm" hx-post="{% url 'logout' %}">Logout</button>
-
-<div hx-boost="true">
-    <a class="btn btn-primary btn-sm" href="{% url 'create_task' %}">Create</a>
+<div class="d-flex mt-3 mb-3">
+    <h3 class="px-2">Tasks</h3>
+    <div class="ms-auto px-2" hx-boost="true">
+        <a class="btn btn-primary btn-sm" href="{% url 'create_task' %}">Create task</a>
+    </div>
 </div>
 
 <div class="list-group">

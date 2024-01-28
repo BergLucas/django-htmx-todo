@@ -11,6 +11,14 @@
 </head>
 
 <body id="main" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <h1 class="navbar-brand px-3">Todo App</h1>
+      {% block navbar %}
+      {% endblock %}
+    </div>
+  </nav>
+
   {% block main %}
   {% endblock %}
   <script src="{% static 'htmx.min.js' %}"></script>

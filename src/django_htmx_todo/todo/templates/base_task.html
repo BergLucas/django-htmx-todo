@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+  <div class="form-inline">
+    <div class="d-flex">
+        {% block navbar_buttons %}
+        {% endblock %}
+        <div class="px-2">
+            {% include "logout_button.html" %}
+        </div>
+    </div>
+  </div>
+{% endblock %}
