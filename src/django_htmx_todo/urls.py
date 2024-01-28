@@ -21,7 +21,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path("", include("django_htmx_todo.login.urls")),
-    path("tasks/", include("django_htmx_todo.todo.urls")),
+    path("", include("django_htmx_todo.todo.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.ADMIN_PAGE:
