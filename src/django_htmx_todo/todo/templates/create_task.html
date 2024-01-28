@@ -1,11 +1,5 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1>Create Task</h1>
-
-<form id="create-task" hx-post="{% url 'create_task' %}" hx-swap="outerHTML" hx-target="#create-task">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+{% include "partial_create_task.html" %}
 {% endblock %}

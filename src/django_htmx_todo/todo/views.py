@@ -39,17 +39,26 @@ class UpdateTaskCompletedView(LoginRequiredMixin, View):
 
 
 class UpdateTaskView(LoginRequiredMixin, UpdateView):
-    template_name = "update_task.html"
     form_class = TaskForm
     model = Task
     success_url = reverse_lazy("list_tasks")
 
+    def get_template_names(self) -> list[str]:
+        if self.request.method =="POST":
+            return ["partial_update_task.html"]
+        else:
+            return ["update_task.html"]
 
 class CreateTaskView(LoginRequiredMixin, CreateView):
-    template_name = "create_task.html"
     form_class = TaskForm
     model = Task
     success_url = reverse_lazy("list_tasks")
+
+    def get_template_names(self) -> list[str]:
+        if self.request.method =="POST":
+            return ["partial_create_task.html"]
+        else:
+            return ["create_task.html"]
 
     def form_valid(self, form: TaskForm):
         form.instance.user = self.request.user

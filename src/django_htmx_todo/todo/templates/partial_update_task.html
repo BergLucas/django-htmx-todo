@@ -1,0 +1,9 @@
+<div id="update-task">
+    <h1>Update Task</h1>
+
+    <form hx-post="{% url 'update_task' pk=object.id %}" hx-swap="outerHTML" hx-target="#update-task">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
