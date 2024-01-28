@@ -76,12 +76,11 @@ LOGIN_URL = env.str("LOGIN_URL", default="/login/")
 INSTALLED_APPS = [
     "django.contrib.postgres",
     "django.contrib.auth",
+    "django.contrib.staticfiles",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django_htmx",
-    "django_components",
-    "django_components.safer_staticfiles",
     "django_htmx_todo.login",
     "django_htmx_todo.todo",
 ]
@@ -109,24 +108,12 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [package_resource("templates")],
+        "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
-            ],
-            "loaders": [
-                (
-                    "django.template.loaders.cached.Loader",
-                    [
-                        "django.template.loaders.filesystem.Loader",
-                        "django.template.loaders.app_directories.Loader",
-                        "django_components.template_loader.Loader",
-                    ],
-                )
-            ],
-            "builtins": [
-                "django_components.templatetags.component_tags",
             ],
         },
     },
