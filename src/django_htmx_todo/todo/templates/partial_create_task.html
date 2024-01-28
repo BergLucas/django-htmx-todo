@@ -1,9 +1,7 @@
 <div id="create-task">
     <div class="d-flex mt-3 mb-3">
         <h3 class="px-2">Create Task</h3>
-        <div class="ms-auto px-2" hx-boost="true">
-            <a class="btn btn-primary btn-sm" href="{% url 'list_tasks' %}">Back</a>
-        </div>
+        <a class="btn btn-primary ms-auto mx-2" href="{% url 'list_tasks' %}" hx-boost="true">Back</a>
     </div>
 
     <form hx-post="{% url 'create_task' %}" hx-swap="outerHTML" hx-target="#create-task">
