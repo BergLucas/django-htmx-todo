@@ -5,7 +5,6 @@ from django.urls import reverse_lazy
 from urllib.parse import urlparse
 
 class LoginView(DjangoLoginView):
-    template_name = "login.html"
     next_page = reverse_lazy("list_tasks")
 
     def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
@@ -13,6 +12,12 @@ class LoginView(DjangoLoginView):
             return HttpResponseRedirect(self.next_page)
         else:
             return super().get(request, *args, **kwargs)
+
+    def get_template_names(self) -> list[str]:
+        if self.request.method == "POST":
+            return ["partial_login.html"]
+        else:
+            return ["login.html"]
 
 class LogoutView(DjangoLogoutView):
     next_page = reverse_lazy("login")

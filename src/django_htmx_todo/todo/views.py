@@ -44,7 +44,7 @@ class UpdateTaskView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("list_tasks")
 
     def get_template_names(self) -> list[str]:
-        if self.request.method =="POST":
+        if self.request.method == "POST":
             return ["partial_update_task.html"]
         else:
             return ["update_task.html"]
