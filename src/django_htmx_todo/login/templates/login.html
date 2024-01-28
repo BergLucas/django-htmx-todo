@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block main %}
-<form id="login" hx-post="{% url 'login_form' %}" hx-swap="outerHTML" hx-target="#login">
+<form id="login" hx-post="{% url 'login' %}" hx-swap="outerHTML" hx-target="#login">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">

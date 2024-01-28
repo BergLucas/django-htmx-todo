@@ -1,5 +1,10 @@
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView as DjangoLoginView, LogoutView as DjangoLogoutView
+from django.urls import reverse_lazy
 
-class LoginFormView(LoginView):
+
+class LoginView(DjangoLoginView):
     template_name = "login.html"
-    success_url = "/tasks/"
+    next_page = reverse_lazy("list_tasks")
+
+class LogoutView(DjangoLogoutView):
+    next_page = reverse_lazy("login")

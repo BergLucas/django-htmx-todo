@@ -1,6 +1,7 @@
 from django.urls import path
-from django_htmx_todo.login.views import LoginFormView
+from django_htmx_todo.login.views import LoginView, LogoutView
 
 urlpatterns = [
-    path("login/", LoginFormView.as_view(), name="login_form"),
+    path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
 ]

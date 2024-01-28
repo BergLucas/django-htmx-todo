@@ -3,6 +3,8 @@
 {% block main %}
 <h1>Tasks</h1>
 
+<button class="btn btn-primary btn-sm" hx-post="{% url 'logout' %}">Logout</button>
+
 <div hx-boost="true">
     <a class="btn btn-primary btn-sm" href="{% url 'create_task' %}">Create</a>
 </div>
