@@ -1,5 +1,10 @@
 <div id="update-task">
-    <h3 class="px-2">Update Task</h3>
+    <div class="d-flex mt-3 mb-3">
+        <h3 class="px-2">Update Task</h3>
+        <div class="ms-auto px-2" hx-boost="true">
+            <a class="btn btn-primary btn-sm" href="{% url 'list_tasks' %}">Back</a>
+        </div>
+    </div>
 
     <form hx-post="{% url 'update_task' pk=object.id %}" hx-swap="outerHTML" hx-target="#update-task">
         {% csrf_token %}
