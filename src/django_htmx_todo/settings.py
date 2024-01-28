@@ -99,7 +99,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-    "django_htmx_todo.login.middleware.htmx_middleware",
+    "django_htmx_todo.login.middleware.htmx_redirect_middleware",
 ]
 
 ROOT_URLCONF = "django_htmx_todo.urls"
