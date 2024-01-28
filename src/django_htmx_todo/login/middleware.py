@@ -4,7 +4,7 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django_htmx.http import HttpResponseLocation
 
 
-def htmx_redirect_middleware(
+def htmx_location_middleware(
     get_response: Callable[[HttpRequest], HttpResponse]
 ) -> Callable[[HttpRequest], HttpResponse]:
     def middleware(request: HttpRequest) -> HttpResponse:
