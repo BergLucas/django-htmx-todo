@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest
-from django.views.generic import View, TemplateView, CreateView, UpdateView
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
+from django.views.generic import CreateView, TemplateView, UpdateView, View
 from django_htmx.http import HttpResponseLocation
-from django_htmx_todo.todo.models import Task
 from django_htmx_todo.todo.forms import TaskForm
+from django_htmx_todo.todo.models import Task
 
 
 class ListTaskView(LoginRequiredMixin, TemplateView):
@@ -49,13 +49,14 @@ class UpdateTaskView(LoginRequiredMixin, UpdateView):
         else:
             return ["update_task.html"]
 
+
 class CreateTaskView(LoginRequiredMixin, CreateView):
     form_class = TaskForm
     model = Task
     success_url = reverse_lazy("list_tasks")
 
     def get_template_names(self) -> list[str]:
-        if self.request.method =="POST":
+        if self.request.method == "POST":
             return ["partial_create_task.html"]
         else:
             return ["create_task.html"]

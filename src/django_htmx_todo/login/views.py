@@ -1,8 +1,15 @@
 from typing import Any
-from django.contrib.auth.views import LoginView as DjangoLoginView, LogoutView as DjangoLogoutView
+from urllib.parse import urlparse
+
+from django.contrib.auth.views import (
+    LoginView as DjangoLoginView,
+)
+from django.contrib.auth.views import (
+    LogoutView as DjangoLogoutView,
+)
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
-from urllib.parse import urlparse
+
 
 class LoginView(DjangoLoginView):
     next_page = reverse_lazy("list_tasks")
@@ -19,13 +26,17 @@ class LoginView(DjangoLoginView):
         else:
             return ["login.html"]
 
+
 class LogoutView(DjangoLogoutView):
     next_page = reverse_lazy("login")
 
     def get_default_redirect_url(self):
         referer_header = self.request.headers.get("Referer")
 
-        if referer_header is not None and (referer_path := urlparse(referer_header).path) != "/":
+        if (
+            referer_header is not None
+            and (referer_path := urlparse(referer_header).path) != "/"
+        ):
             return f"{self.next_page}?next={referer_path}"
         else:
             return super().get_default_redirect_url()

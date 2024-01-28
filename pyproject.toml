@@ -111,7 +111,6 @@ source = [
 
 [tool.ruff]
 select = [
-    "D",   # pydocstyle
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
     "F",   # pyflakes

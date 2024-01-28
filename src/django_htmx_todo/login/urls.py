@@ -1,4 +1,5 @@
 from django.urls import path
+
 from django_htmx_todo.login.views import LoginView, LogoutView
 
 urlpatterns = [
