@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+    web:
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=web_network
+            - traefik.http.routers.django_htmx_todo.rule=Host(`${WEB_HOST?Missing web host}`)
+            - traefik.http.services.django_htmx_todo.loadbalancer.server.port=8000
+        environment:
+            - ALLOWED_HOSTS=${WEB_HOST?Missing web host}
+            - CSRF_TRUSTED_ORIGINS=http://${WEB_HOST?Missing web host}:8000
+            - STATIC_URL=static/
+        volumes:
+            - static_data:/static:rw
+        networks:
+            - web_network
+
+    static:
+        image: nginx:1.25-alpine
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=web_network
+            - traefik.http.routers.django_htmx_todo-static.rule=Host(`${WEB_HOST?Missing web host}`) && PathPrefix(`/static`)
+            - traefik.http.services.django_htmx_todo-static.loadbalancer.server.port=80
+        volumes:
+            - static_data:/usr/share/nginx/html/static:ro
+        networks:
+            - web_network
+        depends_on:
+            - web
+
+networks:
+    web_network:
+        name: web_network
+
+volumes:
+    static_data:

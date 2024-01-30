@@ -8,6 +8,7 @@ services:
             - DEBUG
             - ALLOWED_HOSTS
             - ADMIN_PAGE
+            - CSRF_TRUSTED_ORIGINS
             - DATABASE_URL=postgresql://${POSTGRES_USER?Missing username}:${POSTGRES_PASSWORD?Missing password}@db:5432/${POSTGRES_DB?Missing database}
             - STATIC_URL
             - DEFAULT_FROM_EMAIL
