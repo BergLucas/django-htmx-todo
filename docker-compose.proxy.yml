@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+    reverse-proxy:
+        image: traefik:v2.11
+        command:
+            - --accesslog=true
+            - --providers.docker
+            - --api.insecure=true
+        ports:
+            - 80:80
+            - 8080:8080
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - web_network
+
+networks:
+    web_network:
+        name: web_network
