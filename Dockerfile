@@ -51,4 +51,4 @@ USER app
 
 EXPOSE 8000
 
-CMD gunicorn django_htmx_todo.wsgi:application -w ${WORKERS:-4} --bind 0.0.0.0:8000
+CMD gunicorn django_htmx_todo.wsgi:application -w ${WORKERS:-4} --bind 0.0.0.0:8000 --access-logfile - --error-logfile -
