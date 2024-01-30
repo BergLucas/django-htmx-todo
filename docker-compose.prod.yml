@@ -4,7 +4,7 @@ services:
     web:
         restart: always
         environment:
-            - SECRET_KEY
+            - SECRET_KEY=${SECRET_KEY?Missing secret key}
             - DEBUG
             - ALLOWED_HOSTS
             - ADMIN_PAGE
