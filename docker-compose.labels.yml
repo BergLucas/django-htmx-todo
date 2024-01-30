@@ -33,6 +33,7 @@ services:
 networks:
     web_network:
         name: web_network
+        external: true
 
 volumes:
     static_data:
