@@ -31,6 +31,7 @@ waitress = { version = "^2.1", optional = true }
 django-htmx = "^1.17.2"
 
 [tool.poetry.group.dev.dependencies]
+django-stubs = { extras = ["compatible-mypy"], version = "^4.2.7" }
 psycopg-binary = "^3.1.10"
 black = "^23.7.0"
 mypy = "^1.5.0"
@@ -134,3 +135,11 @@ ignore = [
 
 [tool.ruff.pydocstyle]
 convention = "google"
+
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+
+[tool.django-stubs]
+django_settings_module = "django_htmx_todo.settings"
