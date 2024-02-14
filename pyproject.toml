@@ -47,7 +47,7 @@ django_htmx_todo = "django_htmx_todo:main"
 
 
 [build-system]
-requires = ["poetry-core~=1.5"]
+requires = ["poetry-core~=1.7"]
 build-backend = "poetry.core.masonry.api"
 
 
@@ -69,7 +69,9 @@ ruff = "ruff check --fix src"
 lint = ["black", "ruff", "mypy"]
 migrate = "python manage.py migrate"
 makemigrations = "python manage.py makemigrations"
+createsuperuser = "python manage.py createsuperuser"
 dev-docker = "docker compose up"
+bash-docker = "docker compose exec web bash"
 clean.shell = "rm -rf dist"
 build-docker.shell = "docker compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.build.yml build && mkdir -p dist/docker && docker compose -f docker-compose.yml -f docker-compose.prod.yml convert > dist/docker/docker-compose.yml && docker save berglucas/django_htmx_todo:0.1.0 -o dist/docker/django_htmx_todo_v0.1.0.tar"
 

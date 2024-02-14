@@ -17,8 +17,8 @@ git clone https://github.com/BergLucas/django-htmx-todo.git
 The application requires:
 
 - [Python](https://www.python.org/) ~= 3.11
-- [Poetry](https://python-poetry.org/) ~= 1.5
-- [Poe the Poet](https://pypi.org/project/poethepoet/) ~= 0.21
+- [Poetry](https://python-poetry.org/) ~= 1.7
+- [Poe the Poet](https://pypi.org/project/poethepoet/) ~= 0.24
 - [poetry-bumpversion](https://pypi.org/project/poetry-bumpversion/) ~= 0.3
 
 ### Python environment setup
@@ -45,6 +45,14 @@ You can execute the application in development mode by running the following com
 poetry poe dev
 ```
 
+### Creation of a super user
+
+You can create a super user by running the following command in the project root:
+
+```bash
+poetry poe createsuperuser
+```
+
 ## Setting up a docker development environment
 
 ### Requirements
@@ -52,8 +60,8 @@ poetry poe dev
 The application requires:
 
 - [Python](https://www.python.org/) ~= 3.11
-- [Poetry](https://python-poetry.org/) ~= 1.5
-- [Poe the Poet](https://pypi.org/project/poethepoet/) ~= 0.21
+- [Poetry](https://python-poetry.org/) ~= 1.7
+- [Poe the Poet](https://pypi.org/project/poethepoet/) ~= 0.24
 - [poetry-bumpversion](https://pypi.org/project/poetry-bumpversion/) ~= 0.3
 - [Docker](https://www.docker.com/) ~= 24.0
 - [Docker Compose](https://docs.docker.com/compose/) ~= 2.20
@@ -72,4 +80,21 @@ You can execute the application in development mode on docker by running the fol
 
 ```bash
 poetry poe dev-docker
+```
+
+### Execution of commands in the development container
+
+You can open the development container terminal by running the following command in the project root:
+
+```bash
+poetry poe bash-docker
+```
+
+### Creation of a super user
+
+You can create a super user by running the following commands in the project root:
+
+```bash
+poetry poe bash-docker
+poetry poe createsuperuser
 ```
