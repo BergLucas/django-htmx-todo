@@ -120,7 +120,7 @@ TEMPLATES = [
 ]
 
 if ADMIN_PAGE:
-    TEMPLATES[0]["OPTIONS"]["context_processors"] += [
+    TEMPLATES[0]["OPTIONS"]["context_processors"] += [  # type: ignore
         "django.contrib.messages.context_processors.messages",
     ]
 

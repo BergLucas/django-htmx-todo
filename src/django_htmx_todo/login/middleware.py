@@ -9,7 +9,10 @@ def htmx_location_middleware(
 ) -> Callable[[HttpRequest], HttpResponse]:
     def middleware(request: HttpRequest) -> HttpResponse:
         response = get_response(request)
-        if request.htmx and response.status_code == HttpResponseRedirect.status_code:
+        if (
+            request.htmx  # type: ignore
+            and response.status_code == HttpResponseRedirect.status_code
+        ):
             return HttpResponseLocation(response["location"])
         else:
             return response

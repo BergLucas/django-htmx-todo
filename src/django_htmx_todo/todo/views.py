@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, UpdateView, View
@@ -31,7 +31,7 @@ class UpdateTaskCompletedView(LoginRequiredMixin, View):
     model = Task
     success_url = reverse_lazy("list_tasks")
 
-    def patch(self, request: HttpRequest, pk: int) -> HttpResponseLocation:
+    def patch(self, request: HttpRequest, pk: int) -> HttpResponse:
         task = get_object_or_404(Task, pk=pk)
         task.completed = not task.completed
         task.save()
