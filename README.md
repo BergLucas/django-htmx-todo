@@ -40,6 +40,14 @@ You can quickly execute the application by running the following command:
 django_htmx_todo runserver # or "python -m django_htmx_todo runserver"
 ```
 
+## Creation of a super user
+
+You can create a super user by running the following command:
+
+```bash
+django_htmx_todo createsuperuser # or "python -m django_htmx_todo createsuperuser"
+```
+
 ## License
 
 All code is licensed for others under a MIT license (see [LICENSE](https://github.com/BergLucas/django-htmx-todo/blob/main/LICENSE)).
